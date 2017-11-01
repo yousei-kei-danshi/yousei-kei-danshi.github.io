@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<head>
+  <title>video carousel ( prototype )</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/notosansjapanese.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+  <link rel="stylesheet" href="./testing-env.css"/>
+  <style type="text/css">
+    /* -- for slick slider -- */
+    .video-thumb { min-width: 128px; min-height: 96px; background: center no-repeat; }
+    .vga-to-360p { margin: -9% 0; }
+    .slick-slider { width: 640px; margin: 0; padding: 0; }
+    .slick-slide { opacity: .25; }
+    .slick-active { opacity: .5; }
+    .slick-current { opacity: 1; }
+    /* -- end of for slick-slider -- */
+  </style>
+</head>
+<body>
+  <div class="skin-page">
+    <div id="provHeader">
+      <div id="provHeaderLeft">
+        <div><a>固定ヘッダ領域</a></div>
+      </div>
+      <div id="provHeaderRight">
+      </div>
+    </div>
+    <header class="skin-bgHeader">
+      <div class="headerInner">
+        <a href="javascript:void(0)">
+          <div class="skin-headerTitle">
+            <h1 class="skin-blogMainTitle">
+            ここはタイトル領域
+            </h1>
+            <p class="skin-blogSubTitle">
+            ここはサブタイトルなんかを表示したりする領域
+            </p>
+          </div>
+        </a>
+      </div>
+    </header>
+    <div class="skin-blogHeaderNav">
+      <div class="skin-blogHeaderNavInner">
+        <div class="headerNavMain">
+          <ul class="skin-blogHeaderNavMenu">
+            <li><a href="javascript:void(0)">メニュー項目A</a></li>
+            <li><a href="javascript:void(0)">メニュー項目B</a></li>
+            <li><a href="javascript:void(0)">メニュー項目C</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="skin-blogBody">
+      <div class="skin-blogBodyInner">
+        <div id="primary">
+          <div id="main" class="skin-blogMain skinMainArea" data-uranus-layout="main">
+            <div data-uranus-component="message" class="skin-message skin-bgMain">
+              <div class="skin-messageInner">
+                <div data-uranus-component="overwrap">
+                  <!-- for slick slider -->
+                  <div class="video-carousel-wrap"><ul class="video-carousel-target"></ul></div>
+                  <div class="thumb-carousel-wrap"><ul class="thumb-carousel-target"></ul></div>
+                  <!-- end if for slick slider -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="subA" class="skin-blogSubA">
+            <div id="subAInner" class="skin-blogSubAInner">
+              <div id="profile" class="skin-widget">
+                <div class="skin-widgetInner">
+                  <div class="skin-widgetHead">
+                    <h3 class="skin-widgetTitle">プロフィール領域</h3>
+                  </div>
+                  <div class="skin-widgetBody">
+                    <div class="skin-profile">
+                      <div class="skin-profileAvatar">
+                        <a id="imageAvatar" href="javascript:void(0)">プロフ画像</a>
+                      </div>
+                      <p class="skin-profileName">
+                        <a href="javascript:void(0)">ユーザ名</a>
+                      </p>
+                      <ul class="skin-profileNav">
+                        <li><a href="javascript:void(0)">項目A</a></li>
+                        <li class="skin-sideBorder"></li>
+                        <li><a href="javascript:void(0)">項目B</a></li>
+                      </ul>
+                      <dl class="skin-profileStatus"></dl>
+                    </div>
+                    <div class="hashtag-profile"></div>
+                    <p class="skin-widgetButton">
+                      <a href="javascript:void(0)" class="skin-btnSidePrimary">
+                      <span>ボタン</span>
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.js"></script>
+  <script type="text/javascript" src="//www.youtube.com/player_api" async></script>
+  <script>
+    /*    
+      Version: prototype
+      Author: sei.yukino
+      Website: https://yousei-kei-danshi.github.io/
+    */
+    var yuki = yuki || {};
+    yuki.params = {};
+    
+    yuki.params.carousel = {
+      targetSelector: '.video-carousel-target',
+      settings: {
+        fade: true,
+        dots: false,
+        arrows: false,
+        autoplay: false,
+        autoplaySpeed: 5000,
+        asNavFor: '.thumb-carousel-target'
+      }
+    };
+    
+    yuki.params.thumbCarousel = {
+      targetSelector: '.thumb-carousel-target',
+      settings: {
+        arrows: false,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        asNavFor: '.video-carousel-target',
+        dots: true,
+        centerMode: true,
+        focusOnSelect: true
+      }
+    };
+    
+    yuki.params.players = {
+      //Youtube video id lists for carousel slides.
+      idLists: [
+        'Bz5-ecLVKx4', 'QkhRTlQ3XPo', 'FJTDeHY8Iao', 'uABsuHYRtJo', 'NMMS4ETcUcE',
+        'AqDzEpLzxDk', 'lpEfKd2mk_8', 'wN1pmC6lz2g', '-NDW3yDSuqo', 'E_-QfIjVkPU',
+        'Eumzu_RmjJk', 'guoqoA5yHkw'
+      ],
+      params: {
+        width: '640',
+        height: '360',
+        playerVars: {
+          origin: '//yousei-kei-danshi.github.io',
+          controls: 1,
+          rel: 0
+        }
+      }
+    };
+    
+    yuki.carousel = {
+      
+      _context: $( yuki.params.carousel.targetSelector ).slick( yuki.params.carousel.settings ),
+    
+      get currentIndex() { return this._context.slick( 'slickCurrentSlide' ); },  
+    
+      addSlide: function( dom ) { this._context.slick( 'slickAdd', dom ); },
+      on: function( events, selector ) { this._context.on( events, selector ); },
+      play: function() { this._context.slick( 'slickPlay' ); },
+      pause: function() { this._context.slick( 'slickPause' ); }
+    };
+    
+    yuki.thumbCarousel = {
+      
+      _context: $( yuki.params.thumbCarousel.targetSelector ).slick( yuki.params.thumbCarousel.settings ),
+    
+      addSlide: function( dom ) { this._context.slick( 'slickAdd', dom ); },
+    };
+    
+    yuki.players = {
+      
+      _contexts: {},
+      get length() { return yuki.params.players.idLists.length; },
+      
+      getIndexById: function( videoId ) { return yuki.params.players.idLists.indexOf( videoId ); },
+      registerPlayer: function( index, player ) { this._contexts[ index ] = player; },
+      
+      embed: function( index ) {
+        
+        var indexIsInvalid = ( index < 0 ) || ( this.length <= index );
+        var playerIsEmbeded = (this._contexts[ index ] != undefined );
+        if ( indexIsInvalid || playerIsEmbeded ) return;
+        
+        var videoId = yuki.params.players.idLists[ index ];
+        var elementId = videoId;
+        var params = yuki.params.players.params;
+        
+        params.videoId = videoId;
+        
+        var player = new YT.Player( elementId, params );
+      },
+      
+      pause: function( index ) {
+        
+        var indexIsInvalid = ( index < 0 ) || ( this.length <= index );
+        var playerIsNotEmbeded = (this._contexts[ index ] == undefined );
+        if ( indexIsInvalid || playerIsNotEmbeded ) return;
+        
+        var player = this._contexts[ index ];
+        player.pauseVideo();
+      }
+    };
+    
+    yuki.app = {
+      
+      main: function() {
+        
+        this.initializeCarousel();
+        this.initializePlayer();
+        
+        yuki.carousel.play();
+      },
+      
+      initializeCarousel: function() {
+        
+        var videoIdNum = yuki.players.length;
+        
+        for ( var i = 0; i < videoIdNum; i++ ) {
+          
+          var videoId = yuki.params.players.idLists[ i ];
+          var videoSlideDOM = '<li><div id="' + videoId + '">';
+          var thumbSlideDOM = '<li><div class="video-thumb vga-to-360p" style="background-image: url(//i.ytimg.com/vi/' + videoId + '/default.jpg)">';
+          
+          yuki.carousel.addSlide( videoSlideDOM );
+          yuki.thumbCarousel.addSlide( thumbSlideDOM );
+        }
+        
+        yuki.carousel.on( yuki.carousel.events );
+      },
+      
+      initializePlayer: function() {
+        
+        yuki.params.players.params.events = yuki.players.events;
+        
+        var currentIndex = yuki.carousel.currentIndex;
+        yuki.players.embed( currentIndex );
+        yuki.players.embed( currentIndex + 1 );
+      }
+    };
+    
+    yuki.carousel.events = {
+      
+      beforeChange: function( event, context, currentIndex, nextIndex ) {
+        
+        yuki.players.pause( currentIndex );
+        yuki.players.embed( nextIndex );
+        
+        yuki.carousel.play();
+      },
+      
+      afterChange: function( event, context, currentIndex ) {
+        
+        yuki.players.embed( currentIndex + 1 );
+        yuki.players.embed( currentIndex - 1 );
+      }
+    };
+    
+    yuki.players.events = {
+      
+      onReady: function( event ) {
+        
+        var player = event.target;
+        var videoId = player.getIframe().id;
+        var index = yuki.players.getIndexById( videoId );
+        
+        yuki.players.registerPlayer( index, player );
+      },
+      
+      onStateChange: function( event ) {
+        
+        switch ( event.data ) {
+          
+          case YT.PlayerState.ENDED:
+            yuki.carousel.play();
+            break;
+            
+          case YT.PlayerState.PLAYING:
+            yuki.carousel.pause();
+            break;
+            
+          case YT.PlayerState.PAUSED:
+            yuki.carousel.play();
+            break;
+        }
+      }
+    };
+
+    function onYouTubePlayerAPIReady()
+    {
+      yuki.app.main();
+    }
+  </script>
+</body>

@@ -1,0 +1,243 @@
+@charset "utf-8";
+
+body, h1, h3, ul, li, p {
+  margin: 0
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #999;
+}
+
+h1, h3 {
+  font-weight: bold;
+}
+
+h3 {
+  line-height: 1;
+  font-size: 14px;
+}
+
+body {
+  font-family: 'Noto Sans Japanese', 'Hiragino Kaku Gothic Pro', Meiryo, 'MS PGothic', sans-serif;
+  color: #333;
+  min-width: 1120px;
+  padding-top: 30px!important;
+}
+
+.skin-page {
+  background: url("./snow-bg.png") repeat-x 50% 0 fixed;
+}
+
+#provHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  min-width: 980px;
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+#provHeader a {
+  height: 19px;
+  padding: 5px 40px;
+  line-height: 29px;
+  font-size: 10px;
+}
+
+#provHeaderLeft {
+  float: left;
+  width: 440px;
+  margin-left: 0;
+}
+
+#provHeaderRight {
+  float: right;
+  width: 530px;
+  height: 22px;
+  margin: 4px 0 0;
+}
+
+.skin-bgHeader {}
+
+.headerInner {
+  position: relative;
+  width: 1120px;
+  line-height: 1.4;
+}
+
+.skin-headerTitle {
+  padding: 40px;
+}
+
+.skin-blogMainTitle {
+  margin-bottom: 10px;
+  font-size: 27px;
+}
+
+.skin-blogSubTitle {
+  font-size: 16px;
+}
+
+.skin-blogHeaderNav {
+  border-bottom: 1px solid rgba( 0, 0, 0, .2);
+  border-top: 1px solid rgba( 0, 0, 0, .2);
+  line-height: 72px;
+}
+
+.headerNavInner {
+  width: 1120px;
+  padding: 0 50px;
+}
+
+.headerNavMain {
+  float: left;
+  width: 640px;
+}
+
+.skin-blogHeaderNavMenu {
+  margin: 0;
+}
+
+.skin-blogHeaderNavMenu>li {
+  display: inline-block;
+  font-size: 14px;
+  text-align: center;
+}
+
+.skin-blogHeaderNavMenu>li+li {
+  margin-left: 50px;
+}
+
+.skin-blogBody {}
+
+.skin-blogBodyInner {
+  margin: 0 auto;
+  padding: 40px 0 100px;
+  width: 1120px;
+  line-height: 1.6;
+}
+
+#primary {
+  padding-right: 400px;
+}
+
+#provHeader:after, .skin-blogHeaderNavInner:after, #primary:after, .skin-profileStatus:after {
+  display: table;
+  content: "";
+  clear: both;
+}
+
+.skin-blogMain {
+  float: left;
+  width: 100%;
+}
+
+.skin-message {
+  padding: 0 30px 30px 30px;
+}
+
+.skin-messageInner {
+  margin: 0 auto;
+}
+
+
+/* subA */
+
+.skin-blogSubA {
+  position: relative;
+  float: left;
+  margin-right: -100%;
+  width: 400px;
+}
+
+.skin-blogSubAInner {
+  margin: 0 auto;
+  width: 300px;
+}
+
+.skin-profile {
+  margin-bottom: 15px;
+}
+
+.skin-profileAvatar {
+  margin: 20px 0;
+  text-align: center;
+  font-size: 0;
+}
+
+#imageAvatar {
+  display: block;
+  width: 120px;
+  height: 120px;
+  background: #fff;
+  margin: 0 auto;
+  font-size: 12px;
+  line-height: 120px;
+  border-radius: 50%;
+}
+
+.skin-profileName {
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.skin-profileNav {
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 0;
+  list-style: none;
+  font-size: 0;
+}
+
+.skin-profileNav>li {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+  font-size: 14px;
+}
+
+.skin-sideBorder {
+  margin: 0 10px;
+  border-left: 1px solid transparent;
+  border-color: #ddd;
+  width: 1px;
+  height: 1em;
+}
+
+.skin-profileStatus {
+  margin: 0 0 10px 0;
+}
+
+.skin-widgetButton {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.skin-btnSidePrimary {
+  border-color: #444;
+  background: #555;
+  color: #fff;
+  display: inline-block;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  max-width: 220px;
+  width: 100%;
+  padding: 0 .8em;
+  height: 50px;
+  line-height: 50px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.skin-btnSidePrimary:hover {
+  background: #666;
+  color: #fff;
+}
